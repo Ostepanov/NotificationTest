@@ -21,14 +21,14 @@ public class CreateNotification {
 
     public static Notification notification;
 
-    public static void createNotification(Context context, Track track, int playButton){
+    public static void createNotification(Context context, int playButton){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
             MediaSessionCompat mediaSessionCompat = new MediaSessionCompat(context, "tag");
 
-            Bitmap icon = BitmapFactory.decodeResource(context.getResources(), track.getImage());
+            //Bitmap icon = BitmapFactory.decodeResource(context.getResources(), track.getImage());
 
             Intent intentPlay = new Intent(context, NotificationActionService.class)
                     .setAction(ACTION_PLAY);
@@ -40,7 +40,7 @@ public class CreateNotification {
                     .setSmallIcon(R.drawable.ic_baseline_music_note_24)
                     .setContentTitle("ARTIST")
                     .setContentText("TRACK")
-                    .setLargeIcon(icon)
+                    //.setLargeIcon(icon)
                     .setOnlyAlertOnce(true)
                     .setShowWhen(false)
                     .addAction(playButton, "play", pendingIntentPlay)

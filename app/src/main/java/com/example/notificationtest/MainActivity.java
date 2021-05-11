@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements Playable{
 
     NotificationManager notificationManager;
 
-    List<Track> tracks;
-    int position = 0;
     boolean isPlaying = false;
 
 
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements Playable{
         play = findViewById(R.id.play);
         title = findViewById(R.id.title);
 
-        populateTracks();
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             createChannel();
@@ -60,12 +58,7 @@ public class MainActivity extends AppCompatActivity implements Playable{
         });
     }
 
-    private void populateTracks(){
-        tracks = new ArrayList<>();
 
-        tracks.add(new Track("track1","artist 1", R.drawable.image1));
-        tracks.add(new Track("track2","artist 2", R.drawable.image2));
-    }
     private void createChannel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel(CreateNotification.CHANNEL_ID,
@@ -100,8 +93,7 @@ public class MainActivity extends AppCompatActivity implements Playable{
 
     @Override
     public void onTrackPlay() {
-        CreateNotification.createNotification(MainActivity.this,tracks.get(position),
-                R.drawable.ic_pause);
+        CreateNotification.createNotification(MainActivity.this, R.drawable.ic_pause);
         play.setImageResource(R.drawable.ic_pause);
         title.setText("PLAY");
         isPlaying = true;
@@ -109,8 +101,7 @@ public class MainActivity extends AppCompatActivity implements Playable{
 
     @Override
     public void onTrackPause() {
-        CreateNotification.createNotification(MainActivity.this,tracks.get(position),
-                R.drawable.ic_play);
+        CreateNotification.createNotification(MainActivity.this, R.drawable.ic_play);
         play.setImageResource(R.drawable.ic_play);
         title.setText("PAUSE");
         isPlaying = false;
