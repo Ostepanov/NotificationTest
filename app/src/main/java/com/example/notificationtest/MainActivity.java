@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Playable{
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             createChannel();
-            registerReceiver(broadcastReceiver, new IntentFilter("TRAKS_TAKS"));
+            registerReceiver(broadcastReceiver, new IntentFilter("Notification"));
             startService(new Intent(getBaseContext(), OnClearFromRecentService.class));
         }
 
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Playable{
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getExtras().getString("actionname");
+            String action = intent.getExtras().getString("actionName");
 
             switch (action){
                 case CreateNotification.ACTION_PLAY:

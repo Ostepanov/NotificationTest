@@ -16,12 +16,12 @@ import com.example.notificationtest.Services.NotificationActionService;
 
 public class CreateNotification {
     public static final String CHANNEL_ID = "Channel_id";
-    public static final String ACTION_PLAY = "actionplay";
-    public static final String ACTION_STOP = "actionstop";
+    public static final String ACTION_PLAY = "actionPlay";
+    public static final String ACTION_STOP = "actionStop";
 
     public static Notification notification;
 
-    public static void createNotification(Context context, Track track, int playbutton, int pos, int size){
+    public static void createNotification(Context context, Track track, int playButton, int pos, int size){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
@@ -43,12 +43,12 @@ public class CreateNotification {
             //create notification
             notification = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_baseline_music_note_24)
-                    .setContentTitle("TITLE")
-                    .setContentText("TEXT")
+                    .setContentTitle("ARTIST")
+                    .setContentText("TRACK")
                     .setLargeIcon(icon)
                     .setOnlyAlertOnce(true)
                     .setShowWhen(false)
-                    .addAction(playbutton, "play", pendingIntentPlay)
+                    .addAction(playButton, "play", pendingIntentPlay)
                     .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setShowActionsInCompactView(0)
                         .setMediaSession(mediaSessionCompat.getSessionToken()))
