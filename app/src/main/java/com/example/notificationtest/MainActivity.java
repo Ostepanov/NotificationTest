@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements Playable{
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //CreateNotification.createNotification(MainActivity.this, tracks.get(1), R.drawable.ic_pause, 1, tracks.size()-1);
                 if(isPlaying){
                     onTrackPause();
                 }else{
@@ -93,47 +92,32 @@ public class MainActivity extends AppCompatActivity implements Playable{
                     }
                     break;
                 case CreateNotification.ACTION_STOP:
-                    onTrackNext();
+                    onTrackStop();
                     break;
             }
         }
     };
 
     @Override
-    public void onTrackPrevious() {
-
-        position--;
-        CreateNotification.createNotification(MainActivity.this,tracks.get(position),
-                R.drawable.ic_pause, position, tracks.size()-1);
-        title.setText("TRACKSSKSKTITLEK");
-
-    }
-
-    @Override
     public void onTrackPlay() {
         CreateNotification.createNotification(MainActivity.this,tracks.get(position),
-                R.drawable.ic_pause, position, tracks.size()-1);
+                R.drawable.ic_pause);
         play.setImageResource(R.drawable.ic_pause);
-        title.setText("PLAYYY");
+        title.setText("PLAY");
         isPlaying = true;
     }
 
     @Override
     public void onTrackPause() {
         CreateNotification.createNotification(MainActivity.this,tracks.get(position),
-                R.drawable.ic_play, position, tracks.size()-1);
+                R.drawable.ic_play);
         play.setImageResource(R.drawable.ic_play);
-        title.setText("PAUZEE");
+        title.setText("PAUSE");
         isPlaying = false;
     }
-
     @Override
-    public void onTrackNext() {
-        position++;
-        CreateNotification.createNotification(MainActivity.this,tracks.get(position),
-                R.drawable.ic_pause, position, tracks.size()-1);
-        title.setText("NEXCTTRAKCK");
-
+    public void onTrackStop(){
+        isPlaying = false;
     }
     @Override
     protected void onDestroy(){

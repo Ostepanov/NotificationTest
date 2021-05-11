@@ -6,6 +6,8 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import com.example.notificationtest.CreateNotification;
+
 public class OnClearFromRecentService extends Service {
     @Nullable
     @Override
@@ -15,7 +17,9 @@ public class OnClearFromRecentService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
-        return START_NOT_STICKY;
+
+
+        return START_STICKY;
     }
     @Override
     public void onDestroy(){

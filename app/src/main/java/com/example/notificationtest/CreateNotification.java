@@ -21,7 +21,7 @@ public class CreateNotification {
 
     public static Notification notification;
 
-    public static void createNotification(Context context, Track track, int playButton, int pos, int size){
+    public static void createNotification(Context context, Track track, int playButton){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
@@ -34,11 +34,6 @@ public class CreateNotification {
                     .setAction(ACTION_PLAY);
             PendingIntent pendingIntentPlay = PendingIntent.getBroadcast(context,0,
                     intentPlay, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            Intent intentStop = new Intent(context, NotificationActionService.class)
-                    .setAction(ACTION_STOP);
-            PendingIntent pendingIntentStop = PendingIntent.getBroadcast(context,0,
-                    intentStop, PendingIntent.FLAG_UPDATE_CURRENT);
 
             //create notification
             notification = new NotificationCompat.Builder(context, CHANNEL_ID)
@@ -53,6 +48,7 @@ public class CreateNotification {
                         .setShowActionsInCompactView(0)
                         .setMediaSession(mediaSessionCompat.getSessionToken()))
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setCategory(NotificationCompat.CATEGORY_SERVICE)
                     .build();
 
             notificationManagerCompat.notify(1,notification);
